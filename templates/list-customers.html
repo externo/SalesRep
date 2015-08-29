@@ -1,0 +1,32 @@
+<div class="widget widget-table" ng-if="authService.isLoggedIn()">
+    <div class="widget-header row">
+        <div>
+            <h3><i class="fa fa-table"></i>HEADER</h3> <em> - <a href="" target="_blank">table</a>text</em>
+        </div>
+        <div class="top-bar-right">
+            <span>{{authService.getCurrentUser().username}}</span>
+            <a ng-click="logout()" href="">Logout</a>
+        </div>
+    </div>
+    <div class="widget-content">
+        <table id="datatable-column-interactive" class="table table-sorting table-hover table-bordered datatable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <!--<th>Bounce Rate</th>-->
+                </tr>
+            </thead>
+            <tbody ng-repeat="customer in customers">
+                <tr ng-click="getCustomer(customer.objectId)">
+                    <td>{{customer.customername}}</td>
+                    <td>{{customer.objectId}}</td>
+                    <td>{{customer.productname}}</td>
+                    <td>{{customer.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
