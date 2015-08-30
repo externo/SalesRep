@@ -34,12 +34,12 @@ app.controller('CustomerListController',
             });
 
         // Add new customer
-        var currentUser = JSON.parse(sessionStorage['currentUser']);
+        var currentUser = authService.getCurrentUser();
         var customerUrl = baseUrl + 'classes/Customer';
         $scope.adCustomer = function(newCustomer) {
-            newCustomer.user = currentUser['objectId'];
-            console.log(currentUser['objectId'])
-            $http.post(customerUrl, newCustomer, headers)
+            var customer = newCustomer;
+            customer.user = {"__type": "Pointer", "className": "_User",  "objectId":currentUser["objectId"]}
+            $http.post(customerUrl, customer, headers)
                 .success(function (data) {
                     notifyService.showInfo("New customer added");
                 })

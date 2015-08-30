@@ -1,7 +1,7 @@
 'use strict';
 app.factory('customersService',
-    function ($http, baseUrl, headers) {
-        var currentUser = JSON.parse(sessionStorage['currentUser']);
+    function ($http, baseUrl, headers, authService) {
+        var currentUser = authService.getCurrentUser();
         var customersUrl =
             baseUrl + 'classes/Customer/'
             + '?where={"user": {"__type": "Pointer", "className": "_User",  "objectId":"' + currentUser['objectId'] + '"}}'
