@@ -9,18 +9,19 @@
         </div>
     </div>
     <div class="widget-content">
+        <input  ng-model="filterSearch" placeholder="search..."/>
         <table id="datatable-column-interactive" class="table table-sorting table-hover table-bordered datatable">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>ID</th>
-                    <th>Product</th>
-                    <th>Status</th>
+                    <th ng-click="sortOrder='customername'">Name</th>
+                    <th ng-click="sortOrder='objectId'">ID</th>
+                    <th ng-click="sortOrder='productname'">Product</th>
+                    <th ng-click="sortOrder='status'">Status</th>
                     <!--<th>Bounce Rate</th>-->
                 </tr>
             </thead>
-            <tbody ng-repeat="customer in customers">
-                <tr ng-click="getCustomer(customer.objectId)">
+            <tbody ng-repeat="customer in customers | orderBy:sortOrder | filter: filterSearch">
+                <tr ng-click="customerDetails(customer.objectId)">
                     <td>{{customer.customername}}</td>
                     <td>{{customer.objectId}}</td>
                     <td>{{customer.productname}}</td>

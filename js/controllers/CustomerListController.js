@@ -1,5 +1,5 @@
 'use strict';
-app.controller('EditCustomersController',
+app.controller('CustomerListController',
     function ($scope, authService, customersService, notifyService, $http, baseUrl, headers, $location) {
 
     //LOGOUT
@@ -27,10 +27,8 @@ app.controller('EditCustomersController',
         };
         $scope.reloadCustomers();
 
-        $scope.getCustomer = function(customerId){
-            var customerUrl = baseUrl + 'classes/Customer/' + customerId;
-            $scope.customer = $http.get(customerUrl, headers);
-            $location.path("/customer/details");
+        $scope.customerDetails = function(customerId){
+            $location.path("/customer/"+customerId);
         };
 
         //$scope.editAd = function(objectId, newAd) {

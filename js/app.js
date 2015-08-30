@@ -17,11 +17,11 @@ app.config(function ($routeProvider) {
         })
         .when('/customer', {
             templateUrl: 'templates/list-customers.html',
-            controller: 'EditCustomersController'
+            controller: 'CustomerListController'
         })
-        .when('/customer/details', {
+        .when('/customer/:id', {
             templateUrl: 'templates/customer-detail.html',
-            controller: 'EditCustomersController'
+            controller: 'CustomerDetailsController'
         })
         .otherwise({
             redirectTo: '/'
