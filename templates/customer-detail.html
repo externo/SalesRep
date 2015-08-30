@@ -1,11 +1,11 @@
 <div class="main-content">
         <div class="widget-header">
-            <h4 class="col-md-1"><i class="fa fa-edit"></i>{{customerDetails.customername}}</h4>
-            <h4 class="col-md-2"><i class="fa fa-edit"></i>ID:{{customerDetails.objectId}}</h4>
-            <h4 class="col-md-2"><i class="fa fa-edit"></i>{{customerDetails.productname}}</h4>
-            <h4 class="col-md-1"><i class="fa fa-edit"></i>{{customerDetails.status}}</h4>
+            <h4 class="col-md-2"><i class="fa fa-user"></i>{{customerDetails.customername}}</h4>
+            <h4 class="col-md-2"><i class="fa fa-bullseye"></i>ID:{{customerDetails.objectId}}</h4>
+            <h4 class="col-md-2"><i class="fa fa-shopping-cart"></i>{{customerDetails.productname}}</h4>
+            <h4 class="col-md-2"><i class="fa fa-thumbs-o-up"></i>{{customerDetails.status}}</h4>
             <!--Phone-->
-            <h4 class="col-md-2"><i class="fa fa-edit"></i>
+            <h4 class="col-md-2" ng-if="customerDetails.communications"><i class="fa fa-phone"></i>
                 <select>
                     <option ng-repeat="phone in customerDetails.communications"
                             value="{{phone.value}}"
@@ -15,7 +15,7 @@
                 </select>
             </h4>
             <!--Email address-->
-            <h4 class="col-md-2">
+            <h4 class="col-md-2" ng-if="customerDetails.communications">
                 <!--<select>-->
                     <option ng-repeat="phone in customerDetails.communications"
                             value="{{phone.value}}"
@@ -25,7 +25,16 @@
                 <!--</select>-->
             </h4>
             <!--Address-->
-            <h4 class="col-md-1"><i class="fa fa-edit"></i>{{customerDetails.status}}</h4>
+            <div class="col-md-12"
+                 ng-repeat="address in customerDetails.addresses"
+                 ng-if="customerDetails.addresses">
+                <h4 class="col-md-1"><i class="fa fa-home"></i></h4>
+                <h4 class="col-md-1" value="{{address.city}}">{{address.pincode}}</h4>
+                <h4 class="col-md-2" value="{{address.city}}">{{address.country}}</h4>
+                <h4 class="col-md-2" value="{{address.city}}">{{address.state}}</h4>
+                <h4 class="col-md-2" value="{{address.city}}">{{address.city}}</h4>
+                <h4 class="col-md-2" value="{{address.city}}">{{address.street1}}</h4>
+            </div>
         </div>
     <div class="row">
         <div class="col-md-12">
@@ -89,6 +98,10 @@
             </div>
         </div>
     </div>
-
-    <a class="button" ng-click="editCustomer(customerDetails)">Save</a>
+    <div class="col-md-2 pull-right">
+        <button class="btn btn-custom-primary btn-lg btn-block btn-auth"
+                ng-click='editCustomer(customerDetails)'>
+            <i class="fa fa-check-circle"></i>Save
+        </button>
+    </div>
 </div>

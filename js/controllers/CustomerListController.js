@@ -38,14 +38,19 @@ app.controller('CustomerListController',
         var customerUrl = baseUrl + 'classes/Customer';
         $scope.adCustomer = function(newCustomer) {
             var customer = newCustomer;
-            customer.user = {"__type": "Pointer", "className": "_User",  "objectId":currentUser["objectId"]}
-            $http.post(customerUrl, customer, headers)
-                .success(function (data) {
-                    notifyService.showInfo("New customer added");
-                })
-                .error(function (err) {
-                    notifyService.showError("New customer not added", err);
-                });
+            var customerUserPointer = currentUser["objectId"];
+
+        // Attach user-field to customer before send the request
+        customer.user = {"__type": "Pointer", "className": "_User",  "objectId":customerUserPointer};
+
+        // Create new Customer
+        $http.post(customerUrl, customer, headers)
+            .success(function (data) {
+                notifyService.showInfo("New customer added");
+            })
+            .error(function (err) {
+                notifyService.showError("New customer not added", err);
+            });
         };
     }
 );
