@@ -1,13 +1,4 @@
 <div class="widget widget-table" ng-if="authService.isLoggedIn()">
-    <div class="widget-header row">
-        <div>
-            <h3><i class="fa fa-table"></i>HEADER</h3> <em> - <a href="" target="_blank">table</a>text</em>
-        </div>
-        <div class="top-bar-right">
-            <span>{{authService.getCurrentUser().username}}</span>
-            <a ng-click="logout()" href="">Logout</a>
-        </div>
-    </div>
     <div class="widget-content">
         <input  ng-model="filterSearch" placeholder="search..."/>
         <table id="datatable-column-interactive" class="table table-sorting table-hover table-bordered datatable">

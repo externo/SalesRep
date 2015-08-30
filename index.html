@@ -12,8 +12,14 @@
 <!--<header id="app-header">-->
 <!--<div ng-include="'templates/partial/header.html'"></div>-->
 <!--</header>-->
-<div class="wrapper">
-    <div ng-view>
+<div class="main-content" ng-controller="UserController">
+    <div class="widget-header col-md-12" ng-if="authService.isLoggedIn()">
+        <div class="pull-right">
+            <h5>{{authService.getCurrentUser().firstname}} {{authService.getCurrentUser().lastname}}</h5>
+            <a class="pull-right" ng-click="logout()" href="">Logout</a>
+        </div>
+    </div>
+    <div ng-view class="col-md-12">
     </div>
 </div>
 <footer id="app-footer">
@@ -45,5 +51,6 @@
 <script src="js/controllers/CustomerDetailsController.js"></script>
 <script src="js/controllers/CustomerListController.js"></script>
 <script src="js/controllers/LoginController.js"></script>
+<script src="js/controllers/UserController.js"></script>
 </body>
 </html>

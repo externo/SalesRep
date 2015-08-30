@@ -1,6 +1,6 @@
 'use strict';
 app.factory('authService',
-    function ($http, baseUrl, headers) {
+    function ($http, baseUrl, headers, $location) {
         return {
             login: function(userData, success, error) {
                 var url = baseUrl + 'login' + '?username=' + userData.username + '&password=' + userData.password;
@@ -25,6 +25,7 @@ app.factory('authService',
                     .error(error);
             },
             logout: function() {
+                $location.path("/");
                 delete sessionStorage['currentUser'];
             },
             getCurrentUser : function() {

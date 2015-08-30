@@ -2,17 +2,6 @@
 app.controller('CustomerListController',
     function ($scope, authService, customersService, notifyService, $http, baseUrl, headers, $location) {
 
-    //LOGOUT
-        $scope.authService = authService;
-
-        // Logout function
-        $scope.logout = function() {
-            notifyService.showInfo("Logout successful");
-            console.log('logout');
-            authService.logout();
-            $location.path("/");
-        };
-
         // Load customers
         $scope.reloadCustomers = function() {
             return customersService.getCustomers()
