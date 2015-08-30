@@ -16,6 +16,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'templates/login.html',
             controller: 'LoginController'
         })
+        .when('/register', {
+            templateUrl: 'templates/register.html',
+            controller: 'RegisterController'
+        })
         .when('/customer', {
             templateUrl: 'templates/list-customers.html',
             controller: 'CustomerListController'

@@ -1,7 +1,45 @@
 <div class="widget widget-table" ng-if="authService.isLoggedIn()">
     <div class="widget-content">
-        <input  ng-model="filterSearch" placeholder="search..."/>
-        <table id="datatable-column-interactive" class="table table-sorting table-hover table-bordered datatable">
+        <input class="col-md-3" ng-model="filterSearch" placeholder="search..."/>
+        <div class="col-md-6">
+            <button class="btn btn-custom-primary btn-lg btn-block btn-auth"
+                    ng-click="showAdDetails = ! showAdDetails">
+                <i class="fa fa-check-circle"></i> Add new customer
+            </button>
+        </div>
+        <div class="wrapper full-page-wrapper page-auth page-register text-center"
+             ng-show="showAdDetails">
+            <div class="inner-page">
+                <div class="register-box center-block">
+                    <form>
+                        <input type="text" placeholder="Customer name" class="form-control" ng-model="newCustomer.customername" required>
+                        <input type="text" placeholder="Product name" class="form-control" ng-model="newCustomer.productname" required>
+                        <select ng-model="newCustomer.status">
+                            <option></option>
+                            <option ng-repeat="status in statuses"
+                                    value="{{status.name}}"
+                                    ng-selected="status.name==customerDetails.status">
+                                {{status.name}}
+                            </option>
+                        </select>
+                        <textarea class="form-control" rows="4" cols="30" maxlength="99"
+                                  ng-model="newCustomer.notes"
+                                placeholder="Note...">
+                        </textarea>
+                        <button class="btn btn-custom-primary btn-lg btn-block btn-auth"
+                                ng-click="adCustomer(newCustomer)">
+                            <i class="fa fa-check-circle"></i>Add customer
+                        </button>
+
+                        <div class="links">
+                            <!--<p><a href="#">Forgot Username or Password?</a></p>-->
+                            <button ng-click="showAdDetails = ! showAdDetails">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+            <table id="datatable-column-interactive" class="table table-sorting table-hover table-bordered datatable">
             <thead>
                 <tr>
                     <th ng-click="sortOrder='customername'">Name</th>
@@ -11,7 +49,9 @@
                     <!--<th>Bounce Rate</th>-->
                 </tr>
             </thead>
-            <tbody ng-repeat="customer in customers | orderBy:sortOrder | filter: filterSearch">
+            <tbody ng-repeat="customer in customers
+                            | orderBy:sortOrder
+                            | filter: filterSearch">
                 <tr ng-click="customerDetails(customer.objectId)">
                     <td>{{customer.customername}}</td>
                     <td>{{customer.objectId}}</td>

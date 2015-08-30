@@ -12,12 +12,8 @@ app.factory('authService',
                     .error(error);
             },
             register: function(userData, success, error) {
-                var request = {
-                    method: 'POST',
-                    url: baseUrl + 'users',
-                    data: userData
-                };
-                $http(request)
+                var url = baseUrl + 'users';
+                $http.post(url, userData, headers)
                     .success(function(data) {
                         sessionStorage['currentUser'] = JSON.stringify(data);
                         success(data);

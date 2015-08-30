@@ -16,46 +16,36 @@ app.controller('CustomerListController',
         };
         $scope.reloadCustomers();
 
+        // Redirect to customer details
         $scope.customerDetails = function(customerId){
             $location.path("/customer/"+customerId);
         };
 
-        //$scope.editAd = function(objectId, newAd) {
-        //    var request = {
-        //        method: 'PUT',
-        //        url: baseUrl + 'classes/Part/' + objectId,
-        //        headers: headers.headers,
-        //        data: newAd
-        //    };
-        //    $http(request)
-        //        .success(function (data) {
-        //            notifyService.showInfo("Обявата е редактирана.");
-        //            $location.path("/manipulateAds");
-        //            $scope.reloadAds();
-        //            $scope.newAd = {};
-        //        })
-        //        .error(function (err) {
-        //            notifyService.showError("Неуспешен опит да редактирате обявата!", err);
-        //            $location.path("/editAd");
-        //        });
-        //};
-        //
-        //$scope.deleteAd = function(objectId) {
-        //    var request = {
-        //        method: 'DELETE',
-        //        url: baseUrl + 'classes/Part/' + objectId,
-        //        headers: headers.headers
-        //    };
-        //    $http(request)
-        //        .success(function (data) {
-        //            notifyService.showInfo("Обявата е изтрита.");
-        //            $location.path("/manipulateAds");
-        //            //$scope.reloadAds(); //hide element, not reload(very big data reload)
-        //        })
-        //        .error(function (err) {
-        //            notifyService.showError("Неуспешен опит да изтриете обявата!", err);
-        //            $location.path("/manipulateAds");
-        //        });
-        //};
+
+        // Load statuses
+        var statusesUrl = baseUrl + 'classes/Status';
+        $http.get(statusesUrl, headers)
+            .success(function(data){
+                $scope.statuses = data.results;
+                notifyService.showInfo("Statuses loaded");
+            })
+            .error(function(err){
+                notifyService.showError("Statuses load problem", err);
+            });
+
+        // Add new customer
+        var currentUser = JSON.parse(sessionStorage['currentUser']);
+        var customerUrl = baseUrl + 'classes/Customer';
+        $scope.adCustomer = function(newCustomer) {
+            newCustomer.user = currentUser['objectId'];
+            console.log(currentUser['objectId'])
+            $http.post(customerUrl, newCustomer, headers)
+                .success(function (data) {
+                    notifyService.showInfo("New customer added");
+                })
+                .error(function (err) {
+                    notifyService.showError("New customer not added", err);
+                });
+        };
     }
 );

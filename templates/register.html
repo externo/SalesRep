@@ -1,0 +1,23 @@
+<div class="wrapper full-page-wrapper page-auth page-register text-center">
+
+    <div class="inner-page">
+        <div class="register-box center-block">
+            <form>
+                <p class="title">Create Your Account</p>
+                <input type="text" placeholder="Username" class="form-control" ng-model="userData.username" required>
+                <input type="password" placeholder="Password" class="form-control" ng-model="userData.password" required>
+                <input type="email" placeholder="Email" class="form-control" ng-model="userData.email" required>
+                <input type="text" placeholder="First name" class="form-control" ng-model="userData.firstname" required>
+                <input type="text" placeholder="Last name" class="form-control" ng-model="userData.lastname" required>
+                <button class="btn btn-custom-primary btn-lg btn-block btn-auth" ng-click="register(userData)">
+                    <i class="fa fa-check-circle"></i> Create Account
+                </button>
+            </form>
+
+            <div class="links">
+                <!--<p><a href="#">Forgot Username or Password?</a></p>-->
+                <p><a href="#login">Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>
