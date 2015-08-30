@@ -27,11 +27,12 @@ app.controller('CustomerListController',
         $http.get(statusesUrl, headers)
             .success(function(data){
                 $scope.statuses = data.results;
-                notifyService.showInfo("Statuses loaded");
+                //notifyService.showInfo("Statuses loaded");
             })
             .error(function(err){
                 notifyService.showError("Statuses load problem", err);
             });
+
 
         // Add new customer
         var currentUser = authService.getCurrentUser();
@@ -47,6 +48,7 @@ app.controller('CustomerListController',
         $http.post(customerUrl, customer, headers)
             .success(function (data) {
                 notifyService.showInfo("New customer added");
+                $scope.reloadCustomers();
             })
             .error(function (err) {
                 notifyService.showError("New customer not added", err);

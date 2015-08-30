@@ -1,12 +1,13 @@
 <div class="widget widget-table" ng-if="authService.isLoggedIn()">
     <div class="widget-content">
         <input class="col-md-3" ng-model="filterSearch" placeholder="search..."/>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <button class="btn btn-custom-primary btn-lg btn-block btn-auth"
                     ng-click="showAdDetails = ! showAdDetails">
                 <i class="fa fa-check-circle"></i> Add new customer
             </button>
         </div>
+        <a href="" class="input-group-addon col-md-2" ng-click="reloadCustomers()"><i class="fa fa-spinner">Reload</i></a>
         <div class="wrapper full-page-wrapper page-auth page-register text-center"
              ng-show="showAdDetails">
             <div class="inner-page">

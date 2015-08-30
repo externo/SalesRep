@@ -98,10 +98,18 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2 pull-right">
-        <button class="btn btn-custom-primary btn-lg btn-block btn-auth"
-                ng-click='editCustomer(customerDetails)'>
-            <i class="fa fa-check-circle"></i>Save
-        </button>
+    <div class="col-md-4 pull-right">
+        <div class="col-md-6">
+            <button class="btn btn-custom-secondary btn-lg btn-block btn-auth"
+                    ng-click='deleteCustomer()'>
+                <i class="fa fa-minus-circle"></i>Delete
+            </button>
+        </div>
+        <div class="col-md-6">
+            <button class="col-md-2 btn btn-custom-primary btn-lg btn-block btn-auth"
+                    ng-click='editCustomer(customerDetails)'>
+                <i class="fa fa-check-circle"></i>Save
+            </button>
+        </div>
     </div>
 </div>

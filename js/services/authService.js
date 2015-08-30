@@ -35,22 +35,6 @@ app.factory('authService',
             },
             isLoggedIn : function() {
                 return sessionStorage['currentUser'] != undefined;
-            },
-            isNormalUser : function() {
-                var currentUser = this.getCurrentUser();
-                return (currentUser != undefined) && (!currentUser.isAdmin);
-            },
-            isAdmin : function() {
-                var currentUser = this.getCurrentUser();
-                return (currentUser != undefined) && (currentUser.isAdmin);
-            },
-            getAuthHeaders : function() {
-                var headers = {};
-                var currentUser = this.getCurrentUser();
-                if (currentUser) {
-                    headers['Authorization'] = 'Bearer ' + currentUser.access_token;
-                }
-                return headers;
             }
         }
     }
